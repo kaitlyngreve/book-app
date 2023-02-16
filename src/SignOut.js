@@ -1,6 +1,5 @@
 import { auth } from "./firebase-config";
 
-
 function SignOut() {
 
     const signUserOut = () => {

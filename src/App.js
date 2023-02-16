@@ -8,13 +8,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 function App() {
   const [user] = useAuthState(auth);
 
-  console.log(user);
+  // getting JUST the first name from the user object 
+  const firstName = user.displayName.split(' ')[0];
 
   return (
     <div className="App">
       {user ?
         <div>
-          <h1>The Book Look</h1>
+          <h1>{firstName}'s Book Look</h1>
           <SignOut />
         </div>
         :
