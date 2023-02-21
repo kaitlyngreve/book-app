@@ -14,12 +14,10 @@ function App() {
   const [searchBooks, setSearchBooks] = useState("");
 
   useEffect(() => {
-    fetch('https://www.googleapis.com/books/v1/volumes?q=search-terms')
+    fetch('https://www.googleapis.com/books/v1/volumes?q=search+terms&printType=books&maxResults=40')
       .then((r) => r.json())
       .then((data) => setBooks(data.items))
   }, []);
-
-  console.log(books)
 
   const handleSearchBooks = (e) => {
     setSearchBooks(e.target.value)
@@ -28,7 +26,6 @@ function App() {
   let booksToDisplay = books.filter((book) => {
     return book.volumeInfo.title.toLowerCase().includes(searchBooks.toLowerCase())
   })
-
 
   return (
     <div className="App">
