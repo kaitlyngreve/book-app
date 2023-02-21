@@ -11,12 +11,23 @@ import { useAuthState } from "react-firebase-hooks/auth";
 function App() {
   const [user] = useAuthState(auth);
   const [books, setBooks] = useState([]);
+  const [searchBooks, setSearchBooks] = useState("");
 
   useEffect(() => {
-    fetch('https://www.googleapis.com/books/v1/volumes?q=search-terms&key=AIzaSyCGf2jZ6SCALz72CmivUbSCHan9f1C_9d4')
+    fetch('https://www.googleapis.com/books/v1/volumes?q=search-terms')
       .then((r) => r.json())
       .then((data) => setBooks(data.items))
   }, []);
+
+  console.log(books)
+
+  const handleSearchBooks = (e) => {
+    setSearchBooks(e.target.value)
+  }
+
+  let booksToDisplay = books.filter((book) => {
+    return book.volumeInfo.title.toLowerCase().includes(searchBooks.toLowerCase())
+  })
 
 
   return (
@@ -28,7 +39,9 @@ function App() {
           />
           <SignOut />
           <Books
-            books={books}
+            books={booksToDisplay}
+            searchBooks={searchBooks}
+            handleSearchBooks={handleSearchBooks}
           />
         </div>
         :
