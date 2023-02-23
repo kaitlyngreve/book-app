@@ -2,11 +2,13 @@ import BookCard from "./BookCard";
 import SearchBooks from "./SearchBooks";
 
 function Books({ books, searchBooks, handleSearchBooks }) {
-    console.log(books)
+
     return (
         <div>
             <SearchBooks searchBooks={searchBooks} handleSearchBooks={handleSearchBooks} />
-            {books.length === 0 ? <p>sorry ... no results match</p> :
+            {books.length === 0 ?
+                <p>📚 sorry ... no books match your search</p>
+                :
                 <div>
                     {books.map((book) => {
                         return <BookCard book={book} key={book.id} />
