@@ -23,6 +23,7 @@ function App() {
 
   const setBooksByQuery = (e) => {
     e.preventDefault();
+
     const searchQuery = e.target.searchInput.value;
     fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&printType=books`)
       .then((r) => r.json())
