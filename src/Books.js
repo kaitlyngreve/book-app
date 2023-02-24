@@ -1,20 +1,16 @@
 import BookCard from "./BookCard";
 import SearchBooks from "./SearchBooks";
 
-function Books({ books, searchBooks, handleSearchBooks }) {
+function Books({ books, searchBooks, handleSearchBooks, setBooksByQuery }) {
 
     return (
         <div>
-            <SearchBooks searchBooks={searchBooks} handleSearchBooks={handleSearchBooks} />
-            {books.length === 0 ?
-                <p>📚 sorry ... no books match your search</p>
-                :
-                <div>
-                    {books.map((book) => {
-                        return <BookCard book={book} key={book.id} />
-                    })}
-                </div>
-            }
+            <SearchBooks setBooksByQuery={setBooksByQuery} searchBooks={searchBooks} handleSearchBooks={handleSearchBooks} />
+            <div className='book-card-container'>
+                {books.map((book) => {
+                    return <BookCard book={book} key={book.id} />
+                })}
+            </div>
         </div>
     )
 }

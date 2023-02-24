@@ -1,12 +1,13 @@
 
 
 function BookCard({ book }) {
-    let bookV = book.volumeInfo
-
+    let bookV = book.volumeInfo;
 
     return (
         <div>
-            <p>{bookV.title}</p>
+            <p>Title: {bookV.title}</p>
+            <p>Author: {bookV.authors}</p>
+            <img src={bookV.imageLinks.thumbnail} />
         </div>
     )
 }
